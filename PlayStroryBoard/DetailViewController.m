@@ -7,6 +7,8 @@
 //
 
 #import "DetailViewController.h"
+#import "FontAwesome.h"
+#import "UIFont+FontAwesome.h"
 
 @interface DetailViewController ()
 
@@ -68,6 +70,9 @@
 
 -(void) getContact:(NSDictionary *)data
 {
+   // if (!contact) {
+    //
+    //}
     self.contact = [[NSDictionary alloc] initWithDictionary:data];
 }
 

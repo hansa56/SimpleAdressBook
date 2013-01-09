@@ -7,7 +7,9 @@
 //
 
 #import "CreateViewController.h"
-#import "DetailViewController.h"
+
+#import "FontAwesome.h"
+#import "UIFont+FontAwesome.h"
 
 @interface CreateViewController ()
 
@@ -36,6 +38,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+       
+    txtEmail.delegate = self;//设置委托
+    txtName.delegate = self;
+    txtPhone.delegate = self;
     
     imgPickerCtrller = [[UIImagePickerController alloc] init];
     imgPickerCtrller.delegate = self;
@@ -114,7 +121,7 @@
         //[[NSNotificationCenter defaultCenter] postNotificationName:@"saveSetting" object:self];
         
     }else{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"用户姓名为空" message:@"请输入姓名" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Name is empty" message:@"Enter the name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }
     
@@ -196,6 +203,43 @@
     key = [dateFormatter stringFromDate:now];
     NSLog(@"personID is %@",key);
     return key;
+}
+
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    return YES;
+}
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    CGRect frame = self.view.frame;    
+    frame.origin.y -=120;
+    self.view.frame = frame;
+}
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    CGRect frame = self.view.frame;
+    frame.origin.y +=120;
+    self.view.frame = frame;
+    return YES;
+}
+- (BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{    
+    return YES;
+}
+- (BOOL)textFieldShouldClear:(UITextField *)textField{
+    return YES;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{    
+    self.navigationController.navigationBar.frame = CGRectMake(0,0,320,44);
+    [textField resignFirstResponder];    
+    return YES;
+}
+
+- (BOOL)endEditing:(BOOL)force
+{
+    CGRect frame = self.view.frame;
+    frame.origin.y +=120;
+    self.view.frame = frame;
+    return YES;
+
 }
 
 - (void)dealloc {

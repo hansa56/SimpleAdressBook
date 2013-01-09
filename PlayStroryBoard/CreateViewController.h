@@ -10,7 +10,7 @@
 #import "Contact.h"
 #import "ContactManager.h"
 
-@interface CreateViewController : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface CreateViewController : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextFieldDelegate>
 {
     BOOL isEdit;
     UIImagePickerController* imgPickerCtrller;

@@ -7,7 +7,8 @@
 //
 
 #import "ContactsViewController.h"
-
+#import "FontAwesome.h"
+#import "UIFont+FontAwesome.h"
 @interface ContactsViewController ()
 
 @end
@@ -53,6 +54,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    
+	NSDictionary *contact = nil;
+    if ([segue.identifier isEqualToString:@"SegueDetailView"]){	
+        contact = [self.contactList objectAtIndex:indexPath.row];
+        [segue.destinationViewController getContact:contact];
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -70,7 +82,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    NSString * tableIdentifier=@"Simple Contact";
+    NSString * tableIdentifier=@"ContactCell";
     UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:tableIdentifier];
     if(cell==nil)
     {
@@ -80,7 +92,7 @@
     }
     NSUInteger row=[indexPath row];
     NSDictionary *contact = [contactList objectAtIndex:row];
-    cell.textLabel.text=[contact objectForKey:@"name"];//设置文字
+    //cell.textLabel.text=[contact objectForKey:@"name"];//设置文字
     UIImage *image;//读取图片,无需扩展名
     
 
@@ -90,10 +102,18 @@
         image = [UIImage imageNamed:@"Avatar1"];
     }
    
-    cell.imageView.image=image;//文字左边的图片
-    //    cell.detailTextLabel.text=@"详细描述"; 适用于Subtitle，Value1，Value2样式
-    cell.imageView.highlightedImage=image; //可以定义被选中后显示的图片
-    // Configure the cell...
+    UIImageView *photoImageView = (UIImageView *)[cell viewWithTag:1];
+    UILabel *name = (UILabel *)[cell viewWithTag:2];
+    UILabel *phone = (UILabel *)[cell viewWithTag:3];
+    UILabel *email = (UILabel *)[cell viewWithTag:4];
+    //UILabel *phoneIcon = (UILabel *)[cell viewWithTag:5];
+    //UILabel *emailIcon = (UILabel *)[cell viewWithTag:6];
+    
+    photoImageView.image = image;
+    name.text = [contact objectForKey:@"name"];
+    phone.text = [contact objectForKey:@"phone"];
+    email.text = [contact objectForKey:@"email"];
+    
     
     return cell;
 }
@@ -164,7 +184,7 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"viewReload" object:self];
     
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    //[self.navigationController pushViewController:detailViewController animated:YES];
     //[detailViewController release];
     // Navigation logic may go here. Create and push another view controller.
     /*

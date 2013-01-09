@@ -52,6 +52,11 @@
 		3B7810E616981C8100207664 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		3B7810E716981C8100207664 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		3B7810E91698211400207664 /* Avatar1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Avatar1.png; sourceTree = "<group>"; };
+		3BB00A71169D37250024ACBF /* FontAwesome.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontAwesome.h; sourceTree = "<group>"; };
+		3BB00A72169D37250024ACBF /* FontAwesome.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FontAwesome.m; sourceTree = "<group>"; };
+		3BB00A73169D37250024ACBF /* UIFont+FontAwesome.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+FontAwesome.h"; sourceTree = "<group>"; };
+		3BB00A74169D37250024ACBF /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
+		3BB00A77169D4D710024ACBF /* FontAwesome-iOS.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FontAwesome-iOS.ttf"; sourceTree = "<group>"; };
 		3BE02649169A9B0700D3CF78 /* ContactManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactManager.h; sourceTree = "<group>"; };
 		3BE0264A169A9B0700D3CF78 /* ContactManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +109,7 @@
 				3BFB63BD1699707D006C722D /* View Controllers */,
 				3BFB63BF169970AC006C722D /* Views */,
 				3BFB63BE16997095006C722D /* Models */,
+				3BB00A76169D37310024ACBF /* Resources */,
 				3B7810C11698122600207664 /* Supporting Files */,
 			);
 			path = PlayStroryBoard;
@@ -123,6 +129,26 @@
 				3B7810D01698122600207664 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3BB00A76169D37310024ACBF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3BB00A78169D4DA30024ACBF /* font */,
+				3BB00A71169D37250024ACBF /* FontAwesome.h */,
+				3BB00A72169D37250024ACBF /* FontAwesome.m */,
+				3BB00A73169D37250024ACBF /* UIFont+FontAwesome.h */,
+				3BB00A74169D37250024ACBF /* UIFont+FontAwesome.m */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		3BB00A78169D4DA30024ACBF /* font */ = {
+			isa = PBXGroup;
+			children = (
+				3BB00A77169D4D710024ACBF /* FontAwesome-iOS.ttf */,
+			);
+			name = font;
 			sourceTree = "<group>";
 		};
 		3BFB63BB16997067006C722D /* Application */ = {
