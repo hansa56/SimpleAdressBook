@@ -23,6 +23,7 @@
 @synthesize contact;
 @synthesize imgView;
 @synthesize imgPickerCtrller;
+@synthesize navigationBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,9 +54,14 @@
     [self->cManager connectDataSource];
     
     self->isEdit = false;
-    
+    NSLog(@"%@",self.navigationItem.title);
+    [self.navigationItem setTitle:@"Create Contact"];    
     UIImage *image;
     if(contact.personID) {
+        
+        [self.navigationItem setTitle:@"Edit Contact"];
+
+
         [txtEmail setText:contact.email];
         [txtName setText:contact.name];
         [txtPhone setText:contact.phone];
@@ -68,6 +74,8 @@
         self->isEdit = true;
     }
     
+    //[self.navigationBar pushNavigationItem:self.navigationItem animated:NO];
+        
 	// Do any additional setup after loading the view.
 }
 
@@ -148,8 +156,7 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
     CGPoint coord = [touch locationInView:self.view];
-    
-    //if touches within image, access photo library
+
     if (CGRectContainsPoint(imgView.frame, coord)) {
         [self presentViewController:self.imgPickerCtrller animated:YES completion:^{
             NSLog(@"");
@@ -158,8 +165,8 @@
 }
 
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)img editingInfo:(NSDictionary *)editInfo {
-    //imageView.image = img;
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)img editingInfo:(NSDictionary *)editInfo
+{
     [imgView setImage:img];    
     [picker dismissModalViewControllerAnimated:YES];
     NSData *data = [[NSData alloc]init];
@@ -171,22 +178,20 @@
         
         data = UIImagePNGRepresentation(img);
         
-    }
-    
+    }    
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    //plistPath = [documentsDirectory stringByAppendingPathComponent:@"Contacts.plist"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSFileManager *fileManager = [NSFileManager defaultManager];    
     NSMutableString *imageName;
+    
     if (!contact.personID) {
         contact.personID = [CreateViewController GenerateID];
     }
+    
     imageName =[NSMutableString stringWithString:contact.personID];
     [imageName appendString:@".jpg"];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:imageName];
-    //[fileManager createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
-    NSLog(@"%@", filePath);
     
     [fileManager createFileAtPath:filePath contents:data attributes:nil];
 
@@ -206,28 +211,50 @@
 }
 
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
     return YES;
 }
-- (void)textFieldDidBeginEditing:(UITextField *)textField{
-    CGRect frame = self.view.frame;    
-    frame.origin.y -=120;
-    self.view.frame = frame;
-}
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
     CGRect frame = self.view.frame;
-    frame.origin.y +=120;
-    self.view.frame = frame;
+    if (frame.origin.y ==20) {
+        [UIView beginAnimations:@ "animation" context:nil];
+        [UIView setAnimationDuration:0.4 ];
+        
+        frame.origin.y -=120;
+        self.view.frame = frame;
+        
+        [UIView commitAnimations];
+    }    
+
+}
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{       
     return YES;
 }
-- (BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{    
+- (BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
     return YES;
 }
 - (BOOL)textFieldShouldClear:(UITextField *)textField{
     return YES;
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{    
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [UIView beginAnimations:@ "animation" context:nil];
+    [UIView setAnimationDuration:0.4 ];
+    CGRect frame = self.view.frame;
+    
+    frame.origin.y +=120;
+    self.view.frame = frame;
+    
+    self.view.frame = frame;
+    
+    [UIView commitAnimations];
+    
+    
     self.navigationController.navigationBar.frame = CGRectMake(0,0,320,44);
     [textField resignFirstResponder];    
     return YES;

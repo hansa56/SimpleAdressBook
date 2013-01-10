@@ -107,7 +107,6 @@
 			children = (
 				3BFB63BB16997067006C722D /* Application */,
 				3BFB63BD1699707D006C722D /* View Controllers */,
-				3BFB63BF169970AC006C722D /* Views */,
 				3BFB63BE16997095006C722D /* Models */,
 				3BB00A76169D37310024ACBF /* Resources */,
 				3B7810C11698122600207664 /* Supporting Files */,
@@ -184,13 +183,6 @@
 				3BE0264A169A9B0700D3CF78 /* ContactManager.m */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		3BFB63BF169970AC006C722D /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

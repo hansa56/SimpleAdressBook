@@ -23,7 +23,7 @@
 @property (retain, nonatomic) IBOutlet UITextField *txtName;
 @property (retain, nonatomic) IBOutlet UIImageView *imgView;
 @property (nonatomic,retain) UIImagePickerController* imgPickerCtrller;
-
+@property (retain,nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (retain, nonatomic) Contact *contact;
 
 -(IBAction)createContact:(id)sender;

@@ -190,7 +190,7 @@
             </objects>
             <point key="canvasLocation" x="1129" y="-364"/>
         </scene>
-        <!--Create View Controller - New Contact-->
+        <!--Create View Controller-->
         <scene sceneID="hfR-yh-HTf">
             <objects>
                 <viewController storyboardIdentifier="CreateViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OY2-SQ-Xqj" customClass="CreateViewController" sceneMemberID="viewController">
@@ -229,6 +229,9 @@
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
+                                <connections>
+                                    <outlet property="delegate" destination="OY2-SQ-Xqj" id="qz9-sd-04F"/>
+                                </connections>
                             </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Avatar1.png" highlightedImage="Avatar1.png" id="811-U8-Y7F">
                                 <rect key="frame" x="112" y="70" width="120" height="120"/>
@@ -260,15 +263,9 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="New Contact" id="wuZ-dZ-JGB">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="uwu-CQ-j79">
-                            <connections>
-                                <action selector="createContact:" destination="OY2-SQ-Xqj" id="Vob-yu-Pxl"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="imgView" destination="811-U8-Y7F" id="p9T-KJ-isl"/>
+                        <outlet property="navigationBar" destination="5Ud-go-tlQ" id="w4l-wz-VH6"/>
                         <outlet property="txtEmail" destination="Yxb-Ux-HAY" id="GPE-gl-eTs"/>
                         <outlet property="txtName" destination="o3N-AQ-t3V" id="UaZ-a8-rNr"/>
                         <outlet property="txtPhone" destination="LZn-Kh-zl4" id="WFC-zZ-hhy"/>
@@ -297,6 +294,7 @@
                 <relationship kind="action" name="createContact:"/>
                 <relationship kind="action" name="textFiledReturnEditing:"/>
                 <relationship kind="outlet" name="imgView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationBar"/>
                 <relationship kind="outlet" name="txtEmail" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="txtName" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="txtPhone" candidateClass="UITextField"/>
