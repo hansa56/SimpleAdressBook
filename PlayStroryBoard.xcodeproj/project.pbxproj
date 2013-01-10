@@ -24,6 +24,11 @@
 		3B7810E816981C8200207664 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7810E716981C8100207664 /* Contact.m */; };
 		3B7810EA1698211400207664 /* Avatar1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B7810E91698211400207664 /* Avatar1.png */; };
 		3BE0264B169A9B0800D3CF78 /* ContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE0264A169A9B0700D3CF78 /* ContactManager.m */; };
+		3BF568C2169E99030001F8B2 /* FontAwesome.h in Sources */ = {isa = PBXBuildFile; fileRef = 3BB00A71169D37250024ACBF /* FontAwesome.h */; };
+		3BF568C3169E99030001F8B2 /* FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB00A72169D37250024ACBF /* FontAwesome.m */; };
+		3BF568C4169E99030001F8B2 /* UIFont+FontAwesome.h in Sources */ = {isa = PBXBuildFile; fileRef = 3BB00A73169D37250024ACBF /* UIFont+FontAwesome.h */; };
+		3BF568C5169E99030001F8B2 /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB00A74169D37250024ACBF /* UIFont+FontAwesome.m */; };
+		3BF568C6169E9AAA0001F8B2 /* FontAwesome-iOS.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3BB00A77169D4D710024ACBF /* FontAwesome-iOS.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +113,7 @@
 				3BFB63BB16997067006C722D /* Application */,
 				3BFB63BD1699707D006C722D /* View Controllers */,
 				3BFB63BE16997095006C722D /* Models */,
+				3BF568C1169E98EA0001F8B2 /* Misc */,
 				3BB00A76169D37310024ACBF /* Resources */,
 				3B7810C11698122600207664 /* Supporting Files */,
 			);
@@ -134,10 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				3BB00A78169D4DA30024ACBF /* font */,
-				3BB00A71169D37250024ACBF /* FontAwesome.h */,
-				3BB00A72169D37250024ACBF /* FontAwesome.m */,
-				3BB00A73169D37250024ACBF /* UIFont+FontAwesome.h */,
-				3BB00A74169D37250024ACBF /* UIFont+FontAwesome.m */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -148,6 +150,17 @@
 				3BB00A77169D4D710024ACBF /* FontAwesome-iOS.ttf */,
 			);
 			name = font;
+			sourceTree = "<group>";
+		};
+		3BF568C1169E98EA0001F8B2 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				3BB00A71169D37250024ACBF /* FontAwesome.h */,
+				3BB00A72169D37250024ACBF /* FontAwesome.m */,
+				3BB00A73169D37250024ACBF /* UIFont+FontAwesome.h */,
+				3BB00A74169D37250024ACBF /* UIFont+FontAwesome.m */,
+			);
+			name = Misc;
 			sourceTree = "<group>";
 		};
 		3BFB63BB16997067006C722D /* Application */ = {
@@ -236,6 +249,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BF568C6169E9AAA0001F8B2 /* FontAwesome-iOS.ttf in Resources */,
 				3B7810C51698122600207664 /* InfoPlist.strings in Resources */,
 				3B7810CD1698122600207664 /* Default.png in Resources */,
 				3B7810CF1698122600207664 /* Default@2x.png in Resources */,
@@ -252,6 +266,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BF568C2169E99030001F8B2 /* FontAwesome.h in Sources */,
+				3BF568C3169E99030001F8B2 /* FontAwesome.m in Sources */,
+				3BF568C4169E99030001F8B2 /* UIFont+FontAwesome.h in Sources */,
+				3BF568C5169E99030001F8B2 /* UIFont+FontAwesome.m in Sources */,
 				3B7810C71698122600207664 /* main.m in Sources */,
 				3B7810CB1698122600207664 /* AppDelegate.m in Sources */,
 				3B7810D71698122600207664 /* ViewController.m in Sources */,

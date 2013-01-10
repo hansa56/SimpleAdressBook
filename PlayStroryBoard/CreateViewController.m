@@ -47,6 +47,15 @@
     
     imgPickerCtrller = [[UIImagePickerController alloc] init];
     imgPickerCtrller.delegate = self;
+    
+    UILabel *phoneIconLabel = (UILabel *)[self.view viewWithTag:21];
+    UILabel *emailIconLabel = (UILabel *)[self.view viewWithTag:22];
+    phoneIconLabel.font = [UIFont fontAwesomeOfSize:17];
+    phoneIconLabel.text = FontAwesomeIconPhone;
+    emailIconLabel.font = [UIFont fontAwesomeOfSize:17];
+    emailIconLabel.text = FontAwesomeIconEnvelope;
+    
+    
     if(!contact)
         contact = [[Contact alloc] init];
 

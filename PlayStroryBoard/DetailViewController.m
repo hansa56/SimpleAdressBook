@@ -34,13 +34,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [[NSNotificationCenter defaultCenter]addObserver:self
-                                            selector:@selector(reloadData)
-                                                name:@"viewReload"//消息名
-                                              object:nil];
     
-    
+    UILabel *phoneIconLabel = (UILabel *)[self.view viewWithTag:11];
+    UILabel *emailIconLabel = (UILabel *)[self.view viewWithTag:12];
+    phoneIconLabel.font = [UIFont fontAwesomeOfSize:17];
+    phoneIconLabel.text = FontAwesomeIconPhone;
+    emailIconLabel.font = [UIFont fontAwesomeOfSize:17];
+    emailIconLabel.text = FontAwesomeIconEnvelope;
     
 }
 

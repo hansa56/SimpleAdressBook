@@ -106,9 +106,14 @@
     UILabel *name = (UILabel *)[cell viewWithTag:2];
     UILabel *phone = (UILabel *)[cell viewWithTag:3];
     UILabel *email = (UILabel *)[cell viewWithTag:4];
-    //UILabel *phoneIcon = (UILabel *)[cell viewWithTag:5];
-    //UILabel *emailIcon = (UILabel *)[cell viewWithTag:6];
+    UILabel *phoneIconLabel = (UILabel *)[cell viewWithTag:5];
+    UILabel *emailIconLabel = (UILabel *)[cell viewWithTag:6];
     
+    phoneIconLabel.font = [UIFont fontAwesomeOfSize:12];
+    phoneIconLabel.text = FontAwesomeIconPhone;
+    emailIconLabel.font = [UIFont fontAwesomeOfSize:12];
+    emailIconLabel.text = FontAwesomeIconEnvelope;
+
     photoImageView.image = image;
     name.text = [contact objectForKey:@"name"];
     phone.text = [contact objectForKey:@"phone"];
