@@ -14,6 +14,7 @@
 @interface DetailViewController : UIViewController
 {
     NSDictionary *contact;
+    bool *isEdited;
 }
 @property(retain, nonatomic) NSDictionary *contact;
 

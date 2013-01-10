@@ -60,7 +60,6 @@
         contact = [[Contact alloc] init];
 
     self->cManager = [[ContactManager alloc] initWithDataSource];
-    [self->cManager connectDataSource];
     
     self->isEdit = false;
     NSLog(@"%@",self.navigationItem.title);
@@ -120,11 +119,11 @@
     
     if (contact.name.length>0) {
         if (!self->isEdit) {
-            //[self->cManager setDataWithName:name andPhone:phone andEmail:email];
+            //[self->cManager setDataWithName:name andPhone:phone andEmail:email];            
             [self->cManager createContact:contact];
             [self->cManager saveData];
         }else{
-            //[self->cManager updateDataWithID:key andName:name andPhone:phone andEmail:email];
+            //[self->cManager updateDataWithID:key andName:name andPhone:phone andEmail:email];            
             [self->cManager updataContact:contact];
             [self->cManager saveData];
         }

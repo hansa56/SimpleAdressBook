@@ -34,6 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self->isEdited = false;
     
     UILabel *phoneIconLabel = (UILabel *)[self.view viewWithTag:11];
     UILabel *emailIconLabel = (UILabel *)[self.view viewWithTag:12];
@@ -65,6 +66,7 @@
     if ([segue.identifier isEqualToString:@"SegueContactEdit"]){
         [segue.destinationViewController setTitle:@"Edit Contact"];
         [segue.destinationViewController getContact:contact];
+        self->isEdited  = (bool *)true;
     }
 }
 
@@ -77,13 +79,17 @@
 }
 
 -(void) loadData
-{
-    NSString *key = [contact objectForKey:@"personID"];
-    if (key) {
+{    
+    if (self->isEdited) {
+        NSString *key = [contact objectForKey:@"personID"];
         ContactManager *cManager= [[ContactManager alloc] initWithDataSource];
-        [cManager getData];
-        //NSMutableArray * contactList = [cManager getContactList];
-        contact = [cManager.tempDict objectForKey:key];
+        NSMutableArray * contactList = [cManager getContactList];
+        for (id dict in contactList) {
+            if ([[dict objectForKey:@"personID"] isEqualToString:key]) {
+                contact = dict;
+                break;
+            }
+        }  
     }
     
     name.text = [contact objectForKey:@"name"];

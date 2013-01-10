@@ -10,29 +10,42 @@
 
 @implementation ContactManager
 
-@synthesize contactsData;
-@synthesize dataList;
 @synthesize plistPath;
-@synthesize tempDict;
+
+
+-(id)init
+{
+    self = [super init];
+    if (self) {
+        plistPath = [[NSString alloc] init];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        plistPath = [documentsDirectory stringByAppendingPathComponent:@"Contacts.plist"];
+        if(!self.Data){
+            self.Data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+        }
+        NSLog(@"derectory is %@",plistPath);
+    }
+    return self;
+}
 
 -(ContactManager *)initWithDataSource
 {
-    [self setDataSource];
+    self = [super init];
+    if (self) {
+        self.plistPath = [[NSString alloc] init];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        self.plistPath = [documentsDirectory stringByAppendingPathComponent:@"Contacts.plist"];
+        if(!self.Data){
+            self.Data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+        }
+        NSLog(@"derectory is %@",plistPath);
+    }
     return self;
-    
 }
 
--(void) setDataSource
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    plistPath = [documentsDirectory stringByAppendingPathComponent:@"Contacts.plist"];
-    
-    NSLog(@"derectory is %@",plistPath);
-    
-    
-}
-
+/*
 -(void) getData
 {
     // NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Contacts" ofType:@"plist"];
@@ -57,30 +70,17 @@
     [array release];
     NSLog(@"contactsData is %@", contactsData);
 }
+ */
 
 
 -(void) saveData
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    plistPath = [documentsDirectory stringByAppendingPathComponent:@"Contacts.plist"];
+    NSLog(@"%@",self.plistPath);
     
-    
-    [self.Data writeToFile:plistPath atomically:YES];
+    [self.Data writeToFile:self.plistPath atomically:YES];
     
 }
 
-
--(void) connectDataSource
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    plistPath = [documentsDirectory stringByAppendingPathComponent:@"Contacts.plist"];
-    self.Data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    
-    NSLog(@"derectory is %@",plistPath);
-    NSLog(@"Contacts is %@",self.Data);
-}
 
 -(NSMutableArray *) getContactList
 {
@@ -98,27 +98,24 @@
         
     }
     
-    //contactsData = [NSArray arrayWithArray:array];
     [array release];
-    //NSLog(@"contactsData is %@", contactsData);
     return list;
 }
 
 -(void) createContact:(Contact *)person
 {
     NSDictionary *contact = [[NSDictionary alloc] initWithObjectsAndKeys:person.personID,@"personID",person.name,@"name",person.phone,@"phone",person.email,@"email",person.photo,@"photo",person.photoURL,@"photoURL", nil];
-    //[dataList addObject:contact];
+
+    if (!self.Data) {
+        self.Data = [[NSMutableDictionary alloc] init];
+    }
     [self.Data setObject:contact forKey:person.personID];
     
     NSLog(@"Contacts is %@",self.Data);
 }
 
 -(void) updataContact:(Contact *)person
-{
-    if (!self.Data) {
-        self.Data = [NSMutableDictionary dictionary];
-    }
-    
+{    
     if(person.personID){
         NSMutableDictionary *contact= [self.Data objectForKey:person.personID];
         NSLog(@"%@", contact);
@@ -131,6 +128,12 @@
         
         NSLog(@"Contacts is %@",self.Data);
     }
+}
+
+- (void) dealloc
+{
+    [plistPath release];
+    [super dealloc];
 }
 
 @end

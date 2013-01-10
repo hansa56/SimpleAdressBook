@@ -21,20 +21,16 @@
 @property (strong, nonatomic) NSMutableDictionary *contactIndexDict;
 @property (strong, nonatomic) NSArray *sortedIndexList;
 
-@property(retain,atomic) NSArray *contactsData;
-@property(retain,atomic) NSMutableArray *dataList;
 @property(retain,atomic) NSString *plistPath;
-@property(retain,atomic) NSMutableDictionary *tempDict;
+
 
 @property(retain, atomic) NSMutableDictionary *Data;
 
 -(ContactManager *) initWithDataSource;
--(void) setDataSource;
--(void) getData;
+//-(void) getData;
 -(void) saveData;
 
 -(NSMutableArray *) getContactList;
--(void) connectDataSource;
 -(void) updataContact:(Contact *)contact;
 -(void) createContact: (Contact *) contact;
 
