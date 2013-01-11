@@ -16,10 +16,8 @@
     UIBarButtonItem *addButton;
 }
 
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *addButton;
-
 @property(retain, atomic) NSMutableArray *contactList;
 
-- (IBAction)addNewContact:(id)sender;
+-(IBAction)refresh:(id)sender;
 
 @end

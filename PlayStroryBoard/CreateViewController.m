@@ -97,11 +97,6 @@
 {
 }
 
--(IBAction)textFiledReturnEditing:(id)sender {
-    [sender resignFirstResponder];
-}
-
-
 -(IBAction)createContact:(id)sender
 {
     
@@ -166,6 +161,7 @@
     CGPoint coord = [touch locationInView:self.view];
 
     if (CGRectContainsPoint(imgView.frame, coord)) {
+        [self resignFirstResponder];
         [self presentViewController:self.imgPickerCtrller animated:YES completion:^{
             NSLog(@"");
         }];
@@ -205,6 +201,8 @@
 
     contact.photo = imageName;
     contact.photoURL = filePath;
+    [self upViewFrame:-120];
+    
 }
 
 +(NSString *) GenerateID
@@ -221,20 +219,15 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
+    CGRect frame = self.view.frame;
+    if (frame.origin.y ==20) {
+        [self upViewFrame:-120];
+    }
     return YES;
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    CGRect frame = self.view.frame;
-    if (frame.origin.y ==20) {
-        [UIView beginAnimations:@ "animation" context:nil];
-        [UIView setAnimationDuration:0.4 ];
-        
-        frame.origin.y -=120;
-        self.view.frame = frame;
-        
-        [UIView commitAnimations];
-    }    
+      
 
 }
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
@@ -251,30 +244,22 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-    [UIView beginAnimations:@ "animation" context:nil];
-    [UIView setAnimationDuration:0.4 ];
-    CGRect frame = self.view.frame;
-    
-    frame.origin.y +=120;
-    self.view.frame = frame;
-    
-    self.view.frame = frame;
-    
-    [UIView commitAnimations];
-    
+    [self upViewFrame:120];   
     
     self.navigationController.navigationBar.frame = CGRectMake(0,0,320,44);
     [textField resignFirstResponder];    
     return YES;
 }
 
-- (BOOL)endEditing:(BOOL)force
+-(void) upViewFrame : (float)num //向上提升View的位置
 {
-    CGRect frame = self.view.frame;
-    frame.origin.y +=120;
+    [UIView beginAnimations:@ "animation" context:nil];
+    [UIView setAnimationDuration:0.4 ];
+    CGRect frame = self.view.frame;    
+    frame.origin.y += num;
     self.view.frame = frame;
-    return YES;
-
+    
+    [UIView commitAnimations];
 }
 
 - (void)dealloc {

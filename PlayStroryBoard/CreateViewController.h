@@ -28,7 +28,6 @@
 
 -(IBAction)createContact:(id)sender;
 -(IBAction)cancel:(id)sender;
-- (IBAction)textFiledReturnEditing:(id)sender;
 
 -(void) getContact: (NSDictionary *)data;
 

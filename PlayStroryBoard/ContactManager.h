@@ -12,22 +12,14 @@
 @interface ContactManager : NSObject
 {
     NSString * plistPath;
-    NSArray *contactsData;
-    NSMutableArray *dataList;
-    NSMutableDictionary *tempDict;
 }
-
-@property (strong, nonatomic) NSMutableArray *contactList;
-@property (strong, nonatomic) NSMutableDictionary *contactIndexDict;
-@property (strong, nonatomic) NSArray *sortedIndexList;
 
 @property(retain,atomic) NSString *plistPath;
 
 
-@property(retain, atomic) NSMutableDictionary *Data;
+@property(retain, atomic) NSMutableDictionary *contacts;
 
 -(ContactManager *) initWithDataSource;
-//-(void) getData;
 -(void) saveData;
 
 -(NSMutableArray *) getContactList;

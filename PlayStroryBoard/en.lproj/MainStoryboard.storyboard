@@ -99,7 +99,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Contact List" id="aNw-61-qqp">
                         <barButtonItem key="backBarButtonItem" title="List" id="jzs-Z8-c14"/>
-                        <barButtonItem key="leftBarButtonItem" title="Refresh" id="qUw-cJ-5il"/>
+                        <barButtonItem key="leftBarButtonItem" title="Refresh" id="qUw-cJ-5il">
+                            <connections>
+                                <action selector="refresh:" destination="PDQ-Jg-t9h" id="iw4-mV-Q4R"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="ZaU-db-ofc">
                             <connections>
                                 <action selector="addNewContact:" destination="PDQ-Jg-t9h" id="ir9-n1-oKU"/>
@@ -279,12 +283,41 @@
     <resources>
         <image name="Avatar1.png" width="98" height="98"/>
     </resources>
+    <classes>
+        <class className="ContactsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refresh:"/>
+            </relationships>
+        </class>
+        <class className="CreateViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="createContact:"/>
+                <relationship kind="outlet" name="imgView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="txtEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="txtName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="txtPhone" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="DetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="email" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="imgView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="phone" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="6RE-EK-E0g"/>
+        <segue reference="D4x-gN-bfs"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -17,14 +17,7 @@
 {
     self = [super init];
     if (self) {
-        plistPath = [[NSString alloc] init];
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        plistPath = [documentsDirectory stringByAppendingPathComponent:@"Contacts.plist"];
-        if(!self.Data){
-            self.Data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-        }
-        NSLog(@"derectory is %@",plistPath);
+
     }
     return self;
 }
@@ -37,68 +30,26 @@
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
         self.plistPath = [documentsDirectory stringByAppendingPathComponent:@"Contacts.plist"];
-        if(!self.Data){
-            self.Data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-        }
-        NSLog(@"derectory is %@",plistPath);
+        
+        self.contacts = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
     }
     return self;
 }
 
-/*
--(void) getData
-{
-    // NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Contacts" ofType:@"plist"];
-    tempDict = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    
-    dataList = [[NSMutableArray alloc] init];
-    
-    for (id obj in tempDict) {
-        NSDictionary *subObj= [[NSDictionary alloc] initWithDictionary:[tempDict objectForKey:obj]];
-        [dataList addObject:subObj];
-    }
-    
-    NSLog(@"datalist is %@", dataList);
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    
-    for (id obj in dataList) {
-        [array addObject:[obj objectForKey:@"name"]];
-        
-    }
-    
-    contactsData = [NSArray arrayWithArray:array];
-    [array release];
-    NSLog(@"contactsData is %@", contactsData);
-}
- */
-
 
 -(void) saveData
-{
-    NSLog(@"%@",self.plistPath);
-    
-    [self.Data writeToFile:self.plistPath atomically:YES];
-    
+{    
+    [self.contacts writeToFile:self.plistPath atomically:YES];    
 }
 
 
 -(NSMutableArray *) getContactList
 {
     NSMutableArray *list = [[NSMutableArray alloc] init];
-    for (id obj in self.Data) {
-        NSDictionary *subObj= [[NSDictionary alloc] initWithDictionary:[self.Data objectForKey:obj]];
+    for (id obj in self.contacts) {
+        NSDictionary *subObj= [[NSDictionary alloc] initWithDictionary:[self.contacts objectForKey:obj]];
         [list addObject:subObj];
     }
-    
-    NSLog(@"datalist is %@", list);
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    
-    for (id obj in list) {
-        [array addObject:[obj objectForKey:@"name"]];
-        
-    }
-    
-    [array release];
     return list;
 }
 
@@ -106,27 +57,23 @@
 {
     NSDictionary *contact = [[NSDictionary alloc] initWithObjectsAndKeys:person.personID,@"personID",person.name,@"name",person.phone,@"phone",person.email,@"email",person.photo,@"photo",person.photoURL,@"photoURL", nil];
 
-    if (!self.Data) {
-        self.Data = [[NSMutableDictionary alloc] init];
+    if (!self.contacts) {
+        self.contacts = [[NSMutableDictionary alloc] init]; //when contact.plist is empty, the contacts is nil;
     }
-    [self.Data setObject:contact forKey:person.personID];
-    
-    NSLog(@"Contacts is %@",self.Data);
+    [self.contacts setObject:contact forKey:person.personID];
+
 }
 
 -(void) updataContact:(Contact *)person
 {    
     if(person.personID){
-        NSMutableDictionary *contact= [self.Data objectForKey:person.personID];
-        NSLog(@"%@", contact);
-        //[contact setValue:person. forKey:(NSString *)]
+        NSMutableDictionary *contact= [self.contacts objectForKey:person.personID];
+
         [contact setValue:person.name forKey:@"name"];
         [contact setValue:person.phone forKey:@"phone"];
         [contact setValue:person.email forKey:@"email"];
         [contact setValue:person.photo forKey:@"photo"];
         [contact setValue:person.photoURL forKey:@"photoURL"];
-        
-        NSLog(@"Contacts is %@",self.Data);
     }
 }
 

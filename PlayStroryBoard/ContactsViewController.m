@@ -17,8 +17,6 @@
 
 @synthesize  contactList;
 
-@synthesize addButton;
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -36,6 +34,11 @@
 {
     [self loadData];
     [self.tableView reloadData];
+}
+
+-(IBAction)refresh:(id)sender
+{
+    [self viewWillAppear:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -188,11 +191,6 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
-}
-
-- (IBAction)addNewContact:(id)sender
-{
-   
 }
 
 -(void) loadData
